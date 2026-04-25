@@ -42,3 +42,8 @@ INSERT INTO categories (name) VALUES
                                   ('Salud'),
                                   ('Finanzas')
     ON DUPLICATE KEY UPDATE name = name;
+--changeset leti:4
+--comment: se modifica el campo status para usar ENUM y se agregan los nuevos estados
+ALTER TABLE tasks
+    MODIFY status ENUM('PENDING', 'IN_PROGRESS', 'CANCELLED', 'FINISHED')
+    NOT NULL DEFAULT 'PENDING';

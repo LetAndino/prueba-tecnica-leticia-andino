@@ -1,7 +1,11 @@
 package com.prueba_tecnica_leticia_andino.model;
 
 @lombok.Getter
-@lombok.Setter@jakarta.persistence.Entity
+@lombok.Setter
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
+@jakarta.persistence.Entity
 @jakarta.persistence.Table(name = "tasks")
 public class Task {
 @jakarta.persistence.Id
@@ -14,8 +18,7 @@ private java.lang.Long id;
 @jakarta.persistence.Column(name = "title", nullable = false, length = 200)
 private java.lang.String title;
 
-@jakarta.persistence.Lob
-@jakarta.persistence.Column(name = "description")
+@jakarta.persistence.Column(name = "description", columnDefinition = "TEXT")
 private java.lang.String description;
 
 @jakarta.validation.constraints.Size(max = 20)

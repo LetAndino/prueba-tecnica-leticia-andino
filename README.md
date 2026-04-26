@@ -103,3 +103,88 @@ Content-Type: application/json
 | 200 | OK |
 | 400 | Error de validación |
 | 404 | Recurso no encontrado |
+
+---
+
+## Ejercicio 2 – Autenticación JWT
+
+Autenticación por token JWT para proteger recursos.
+
+### Endpoints disponibles
+
+| Método | Ruta | Descripción | Auth |
+|--------|------|-------------|------|
+| POST | `/login` | Iniciar sesión | No |
+| GET | `/profile` | Obtener perfil del usuario autenticado | Sí |
+
+### Usuarios en memoria
+
+| Username | Password | Role |
+|----------|----------|------|
+| `admin` | `admin123` | `ADMIN` |
+| `user` | `user123` | `USER` |
+
+### Uso del token
+
+**Web** — el token se envía automáticamente en una cookie `HttpOnly` llamada `jwt`.
+
+**Mobile** — el token se retorna en el payload de la respuesta y debe enviarse en el header:
+
+```
+Authorization: Bearer <token>
+```
+
+### Ejemplo de login
+
+```bash
+POST /login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+```
+
+Response:
+
+```json
+{
+  "token": "<jwt>",
+  "username": "admin",
+  "role": "ADMIN"
+}
+```
+
+### Ejemplo de profile
+
+```bash
+GET /profile
+Authorization: Bearer <token>
+```
+
+Response:
+
+```json
+{
+  "username": "admin",
+  "role": "ADMIN"
+}
+```
+
+### Códigos de estado HTTP
+
+| Código | Descripción |
+|--------|-------------|
+| 200 | OK |
+| 401 | Credenciales inválidas o token ausente |
+| 403 | Token inválido o expirado |
+
+### Configuración JWT
+
+Las propiedades del token se configuran en `src/main/resources/application.properties`:
+
+```properties
+jwt.secret=<base64-secret>
+jwt.expiration=86400000
+```

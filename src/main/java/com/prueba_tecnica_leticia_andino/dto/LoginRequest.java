@@ -1,12 +1,12 @@
 package com.prueba_tecnica_leticia_andino.dto;
 
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
-public class UserAccount {
+public class LoginRequest {
+    @NotBlank
     private String username;
+    @NotBlank
     private String password;
-    private String role;
 }

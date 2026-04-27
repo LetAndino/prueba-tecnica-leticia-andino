@@ -29,7 +29,7 @@ Editar `.env` con tus credenciales:
 DB_URL=jdbc:mysql://localhost:3306/prueba_tecnica?createDatabaseIfNotExist=true
 DB_USERNAME=root
 DB_PASSWORD=root
-JWT_SECRET=your_base64_encoded_secret
+JWT_SECRET=c2VjcmV0LWtleS1wYXJhLXBydWViYS10ZWNuaWNhLWxldGljaWEtYW5kaW5vLTI1Ng==
 JWT_EXPIRATION=86400000
 ```
 

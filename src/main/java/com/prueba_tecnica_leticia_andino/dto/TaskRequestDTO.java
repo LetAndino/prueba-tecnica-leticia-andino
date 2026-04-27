@@ -19,8 +19,8 @@ public class TaskRequestDTO {
     @Size(max = 1000, message = "La descripción no puede exceder los 1000 caracteres")
     private String description;
 
-    @Pattern(regexp = "PENDING|IN_PROGRESS|CANCELLED|FINISHED|COMPLETED",
-             message = "El estado debe ser PENDING, IN_PROGRESS, CANCELLED, FINISHED o COMPLETED")
+    @Pattern(regexp = "PENDING|IN_PROGRESS|CANCELLED|FINISHED",
+             message = "El estado debe ser PENDING, IN_PROGRESS, CANCELLED o FINISHED")
     private String status;
 
     private Long categoryId;

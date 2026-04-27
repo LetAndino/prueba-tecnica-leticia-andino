@@ -37,7 +37,7 @@ JWT_EXPIRATION=86400000
 
 ```bash
 # Clonar el repositorio
-git clone <url-del-repositorio>
+git clone https://github.com/LetAndino/prueba-tecnica-leticia-andino.git
 cd prueba-tecnica-leticia-andino
 
 # Compilar

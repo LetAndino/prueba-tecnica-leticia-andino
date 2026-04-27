@@ -17,12 +17,20 @@ API REST para gestionar tareas y subtareas con paginación, filtrado y ordenamie
 
 Crear un usuario MySQL o usar el existente. La base de datos `prueba_tecnica` se crea automáticamente al iniciar la aplicación.
 
-Verificar las credenciales en `src/main/resources/application.properties`:
+Copiar el archivo de ejemplo y configurar las variables:
+
+```bash
+cp .env.example .env
+```
+
+Editar `.env` con tus credenciales:
 
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/prueba_tecnica?createDatabaseIfNotExist=true
-spring.datasource.username=root
-spring.datasource.password=root
+DB_URL=jdbc:mysql://localhost:3306/prueba_tecnica?createDatabaseIfNotExist=true
+DB_USERNAME=root
+DB_PASSWORD=root
+JWT_SECRET=your_base64_encoded_secret
+JWT_EXPIRATION=86400000
 ```
 
 ### Instalación y ejecución

@@ -1,73 +1,107 @@
-# React + TypeScript + Vite
+# Frontend – E-commerce
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interfaz para un e-commerce construida con React + TypeScript + Vite, consumiendo la API de [fakestoreapi.com](https://fakestoreapi.com/).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Requisitos previos
 
-## React Compiler
+- Node.js 18+
+- npm 9+
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Instalación y ejecución
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# Desde la raíz del repositorio
+cd frontend
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Instalar dependencias
+npm install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Ejecutar en modo desarrollo
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+La aplicación corre en `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Scripts disponibles
+
+| Script | Descripción |
+|--------|-------------|
+| `npm run dev` | Inicia el servidor de desarrollo |
+| `npm run build` | Compila TypeScript y genera el bundle de producción |
+| `npm run preview` | Previsualiza el build de producción |
+| `npm run lint` | Ejecuta ESLint |
+| `npm run test` | Ejecuta los tests en modo watch |
+| `npm run test:run` | Ejecuta los tests una sola vez |
+
+---
+
+## Variables de entorno
+
+El archivo `.env` ya está incluido con la configuración por defecto:
+
+```env
+VITE_API_BASE_URL=https://fakestoreapi.com
+```
+
+---
+
+## Credenciales de prueba
+
+```
+Usuario: mor_2314
+Contraseña: 83r5^_
+```
+
+---
+
+## Funcionalidades
+
+- **Login** — autenticación con token JWT via fakestoreapi
+- **Productos** — listado con filtro por categoría, ordenamiento y paginación. CRUD completo (crear, editar, eliminar)
+- **Usuarios** — tabla con ordenamiento y paginación. CRUD completo
+- **Carrito** — dos vistas:
+  - *Mi carrito*: carrito local persistido en localStorage con paginación
+  - *Gestión de carritos*: CRUD completo contra la API `/carts`
+- **Paginación cliente** en todos los listados
+- **Rutas protegidas** — redirige a `/login` si no hay sesión activa
+
+---
+
+## Dependencias principales
+
+| Paquete | Uso |
+|---------|-----|
+| `react` + `react-dom` | Framework UI |
+| `react-router-dom` | Enrutamiento |
+| `axios` | Cliente HTTP |
+| `zustand` | Estado global (auth y carrito) |
+| `react-hook-form` | Manejo de formularios |
+| `@hookform/resolvers` + `yup` | Validación de formularios |
+| `tailwindcss` | Estilos |
+| `vitest` + `@testing-library/react` | Tests unitarios |
+
+---
+
+## Estructura de carpetas
+
+```
+src/
+├── components/
+│   ├── auth/        # LoginForm
+│   ├── cart/        # CartList, CartForm
+│   ├── common/      # Navbar, Modal, Pagination
+│   ├── products/    # ProductList, ProductCard, ProductForm
+│   └── users/       # UserList, UserForm
+├── pages/           # ProductsPage, UsersPage, CartPage, LoginPage
+├── services/        # Llamadas a la API (axios)
+├── store/           # Zustand stores
+├── tests/           # Tests unitarios
+├── types/           # Interfaces TypeScript
+└── utils/           # Paginación, validadores
 ```

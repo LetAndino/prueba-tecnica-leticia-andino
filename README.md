@@ -41,10 +41,22 @@ git clone <url-del-repositorio>
 cd prueba-tecnica-leticia-andino
 
 # Compilar
-mvn clean install
+.\mvnw clean install
 
 # Ejecutar
-mvn spring-boot:run
+.\mvnw spring-boot:run
+```
+
+### Formateo de código
+
+El proyecto usa [Spotless](https://github.com/diffplug/spotless) con Google Java Format.
+
+```bash
+# Verificar formato
+.\mvnw spotless:check
+
+# Aplicar formato automáticamente
+.\mvnw spotless:apply
 ```
 
 La aplicación corre en `http://localhost:8080`.
